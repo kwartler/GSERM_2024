@@ -5,8 +5,9 @@
 #' Date: May 21, 2024
 
 # Data Folder
-folderPaths <- list.dirs(path = '~/Desktop/ICPSR/ICPSR_Day3/data/AutoAndElectronics')
-savePath <- '~/Desktop/ICPSR/personalFiles'
+folderPaths <- list.dirs(path = '~/Desktop/GSERM_2024/lessons/Day3/data/AutoAndElectronics')
+#savePath <- '~/Desktop/GSERM_2024/personalFiles/'
+#rdsPath  <- '~/Desktop/GSERM_2024/lessons/Day3/data'
 
 # Libs
 library(tm)
@@ -63,9 +64,9 @@ allTDM
 
 # Get 20 latent topics
 ##### Takes awhile, may crash small RAM computers, so saved a copy
-#lsaTDM <- lsa(allTDM, 20)
+#lsaTDM <- lsa(allTDM, 10)
 #saveRDS(lsaTDM, paste0(savePath,'/',Sys.Date(),'_lsaTDM_tfidf_.rds'))#be sure to declare the right path!
-tmp <- list.files(savePath,
+tmp <- list.files(rdsPath,
                   '_lsaTDM_tfidf_.rds',
                   full.names = T)
 lsaTDM <- readRDS(tmp)

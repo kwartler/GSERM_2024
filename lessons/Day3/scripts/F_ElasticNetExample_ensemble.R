@@ -22,7 +22,7 @@ diagnosisClean<-function(xVec){
 }
 
 # Read
-diabetes <- read.csv('https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day3/data/diabetes_subset_8500.csv')
+diabetes <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3/data/diabetes_subset_8500.csv')
 
 # Concantenate texts in 3 columns
 diabetes$diagnosisText <- as.character(paste(diabetes$diag_1_desc,

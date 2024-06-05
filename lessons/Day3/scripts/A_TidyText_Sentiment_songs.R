@@ -37,9 +37,9 @@ cleanCorpus<-function(corpus, customStopwords){
 customStopwords <- c(stopwords('english'))
 
 # Read in multiple files as individuals
-txtFiles<-c( 'https://raw.githubusercontent.com/kwartler/Hult_Visualizing_Analyzing_Data_with_R/main/Lessons/E_NLP/data/in_your_eyes.txt', 
-             'https://raw.githubusercontent.com/kwartler/Hult_Visualizing_Analyzing_Data_with_R/main/Lessons/E_NLP/data/pharrell_williams_happy.txt',
-             'https://raw.githubusercontent.com/kwartler/Hult_Visualizing_Analyzing_Data_with_R/main/Lessons/E_NLP/data/starboy.txt') 
+txtFiles<-c( 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3/data/in_your_eyes.txt', 
+             'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3/data/pharrell_williams_happy.txt',
+             'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3/data/starboy.txt') 
 documentTopics <- c("in_your_eyes.txt", "pharrell_williams_happy.txt", "starboy.txt") 
 
 # Read in as a list
@@ -108,7 +108,7 @@ nrc <- lexicon_nrc()
 nrcSent <- inner_join(allText,
                       nrc, 
                       by = c('term' = 'word'),
-                      multiple = "all")
+                      relationship = "many-to-many")
 nrcSent
 
 # Drop pos/neg leaving only emotion
