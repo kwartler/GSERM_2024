@@ -36,7 +36,7 @@ cleanCorpus<-function(corpus, customStopwords){
 customStopwords <- c(stopwords('english'), 'bank', 'money', 'account')
 
 # Data
-text <- read.csv('https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/allComplaints.csv')
+text <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/allComplaints.csv')
 
 # Substitutions
 text$Consumer.complaint.narrative <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', 'REDACTED_DATE', text$Consumer.complaint.narrative, perl = T)

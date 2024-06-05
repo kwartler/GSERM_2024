@@ -5,8 +5,8 @@
 #'
 
 # Data Input, locally you can use list.files()
-mortgageLoans  <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day2/data/mortgageLoan_2024.csv'
-studentLoans   <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day2/data/studentLoan_2024.csv'
+mortgageLoans  <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2/data/mortgageLoan_2024.csv'
+studentLoans   <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2/data/studentLoan_2024.csv'
 txtFiles <- c(mortgageLoans, studentLoans)
 
 # Libs

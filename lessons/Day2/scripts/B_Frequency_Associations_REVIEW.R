@@ -5,8 +5,8 @@
 #'
 
 # Declare the data path
-filePathA  <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day2/data/mortgageLoan_2024.csv'
-filePathB <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day2/data/studentLoan_2024.csv'
+filePathA  <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2/data/mortgageLoan_2024.csv'
+filePathB <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2/data/studentLoan_2024.csv'
 
 # Libs
 library(tm)

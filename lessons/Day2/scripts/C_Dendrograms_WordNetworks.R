@@ -5,7 +5,7 @@
 #'
 
 # Declare the data path
-filePath  <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day2/data/studentLoan_2024.csv'
+filePath  <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2/data/studentLoan_2024.csv'
 
 # Libs
 library(tm)

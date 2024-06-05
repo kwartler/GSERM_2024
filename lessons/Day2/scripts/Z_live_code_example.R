@@ -6,7 +6,7 @@
 # *large-ish* data: "winemag-data-130k-v2.csv"
 
 # Data Path
-wine <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day2/data/winemag-data-130k-v2.csv'
+wine <- 'https://github.com/kwartler/GSERM_2024/blob/main/lessons/Day2/data/winemag-data-130k-v2.csv'
 
 # Libs
 

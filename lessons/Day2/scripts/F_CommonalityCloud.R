@@ -7,8 +7,8 @@
 #'
 
 # Data Input, locally you can use list.files()
-chardonnay <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day2/data/chardonnay.csv'
-coffee     <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day2/data/coffee.csv'
+chardonnay <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2/data/chardonnay.csv'
+coffee     <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2/data/coffee.csv'
 txtFiles <- c(chardonnay, coffee)
 
 # Topic names

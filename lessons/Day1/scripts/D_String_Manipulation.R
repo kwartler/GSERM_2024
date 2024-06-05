@@ -9,7 +9,7 @@ library(stringi)
 library(stringr)
 
 # Get Data
-text <- read.csv('https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/allComplaints.csv')
+text <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/allComplaints.csv')
 
 # Let's look at the colnames & a portion of the data
 names(text)

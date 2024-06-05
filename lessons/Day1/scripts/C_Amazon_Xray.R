@@ -11,13 +11,12 @@ options(scipen = 999)
 ### 1. Set the path to our ata
 # URL to the file
 # Lego
-# 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/lego_onScreenCharacters.csv'
+# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/lego_onScreenCharacters.csv'
 # Force Awakens
-# 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/forceAwakens_onScreenCharacters.csv'
+# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/forceAwakens_onScreenCharacters.csv'
 # Mary Poppins
-# 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/poppins_onScreenCharacters.csv'
+# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/poppins_onScreenCharacters.csv'
 
-movieURL <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/forceAwakens_onScreenCharacters.csv'
 
 ### 2. Load libraries to customize R
 library(ggplot2)
@@ -89,7 +88,7 @@ names(topPerformers)
 topChars <- charDF[charDF$character %in% names(topPerformers),]
 ggplot(topChars, aes(colour = character)) +
   geom_segment(aes(x = appearanceSecs, xend = sceneEndSecs,
-                   y = character, yend = character),size=3) +
+                   y = character, yend = character),linewidth=3) +
   theme_gdocs() + theme(legend.position = "none")
 
 # End

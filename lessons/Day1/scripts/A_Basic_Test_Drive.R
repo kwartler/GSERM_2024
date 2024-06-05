@@ -107,7 +107,7 @@ savePath <- '~/Desktop/GSERM_2024/personalFiles/example.csv'
 write.csv(dataDF,savePath, row.names=F)
 
 ## Read in a file as an object; just path
-newDF<-read.csv("~~/Desktop/GSERM_2024/personalFiles/example.csv")
+newDF<-read.csv("~/Desktop/GSERM_2024/personalFiles/example.csv")
 
 # Examine & Compare to original
 newDF

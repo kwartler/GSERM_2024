@@ -9,16 +9,16 @@ options(scipen = 999)
 
 ### 1. Set the path to our data
 # Force Awakens
-# 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/forceAwakens_definedScenes.csv'
+# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/forceAwakens_definedScenes.csv'
 
 # Lego Movie
-# 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/lego_definedScenes.csv'
+# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/lego_definedScenes.csv'
 
 # Mary Poppins
-# https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/poppins_definedScenes.csv
+# https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/poppins_definedScenes.csv
 
 # URL to the file
-movieURL <- 'https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/lego_definedScenes.csv'
+movieURL <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/lego_definedScenes.csv'
 
 ### 2. Load libraries to customize R
 library(ggplot2)
