@@ -12,7 +12,7 @@ library(ModelMetrics)
 options(scipen=999)
 
 # Data
-cars <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_ICPSR/main/lessons/D_Supervised/data/newCars.csv') 
+cars <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day5_supervised_unsupervised/data/newCars.csv') 
 
 # drop geo and text for this example
 cars$state       <- NULL

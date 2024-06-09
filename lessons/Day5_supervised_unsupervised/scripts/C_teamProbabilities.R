@@ -11,7 +11,7 @@ library(pROC)
 library(ggplot2)
 
 # Data location
-filePath <- 'https://raw.githubusercontent.com/kwartler/GSERM_ICPSR/main/lessons/D_Supervised/data/ncaa.csv'
+filePath <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day5_supervised_unsupervised/data/newCars.csv'
 
 # Data
 bball <- read.csv(filePath)

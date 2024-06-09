@@ -11,7 +11,7 @@ library(cluster)
 library(factoextra)
 
 # Load
-customerData <- read.csv('https://raw.githubusercontent.com/kwartler/Harvard_DataMining_Business_Student/master/Lessons/M_unsupervised/data/Cluster_Customers.csv')
+customerData <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day5_supervised_unsupervised/data/Cluster_Customers.csv')
 
 ### SAMPLE
 # toy data set so let's just take 5 rows

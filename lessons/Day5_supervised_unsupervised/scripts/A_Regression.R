@@ -9,7 +9,7 @@ library(ggthemes)
 library(dplyr)
 
 # Data
-diamonds <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_ICPSR/main/lessons/D_Supervised/data/diamonds2023.csv')
+diamonds <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day5_supervised_unsupervised/data/diamonds2023.csv')
 
 # EDA
 summary(diamonds)
