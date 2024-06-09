@@ -56,8 +56,8 @@ coffee     <- cleanCorpus(coffee, stops)
 chardonnay <- cleanCorpus(chardonnay, stops)
 
 # Another way to extract the cleaned text
-coffee     <- unlist(lapply(coffee, NLP::content))
-chardonnay <- unlist(lapply(chardonnay, NLP::content))
+coffee     <- sapply(coffee, NLP::content)
+chardonnay <- sapply(chardonnay, NLP::content)
 
 # Instead of 1000 individual documents, collapse each into a single "subject" ie a single document
 coffee     <- paste(coffee, collapse = ' ')
