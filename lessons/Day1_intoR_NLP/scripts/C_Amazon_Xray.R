@@ -11,11 +11,11 @@ options(scipen = 999)
 ### 1. Set the path to our ata
 # URL to the file
 # Lego
-# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/lego_onScreenCharacters.csv'
+# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1_intoR_NLP/data/lego_onScreenCharacters.csv'
 # Force Awakens
-# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/forceAwakens_onScreenCharacters.csv'
+# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1_intoR_NLP/data/forceAwakens_onScreenCharacters.csv'
 # Mary Poppins
-# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1/data/poppins_onScreenCharacters.csv'
+# 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1_intoR_NLP/data/poppins_onScreenCharacters.csv'
 
 
 ### 2. Load libraries to customize R
@@ -24,6 +24,7 @@ library(ggthemes)
 
 ### 3. Read in data
 # Use the read.csv function for your specific onScreenCharacters.csv file
+movieURL <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1_intoR_NLP/data/poppins_onScreenCharacters.csv'
 charDF   <- read.csv(movieURL)
 
 ### 4. Apply functions to clean up data & get insights/analysis
@@ -78,7 +79,7 @@ ggplot(charDF, aes(colour = character)) +
   geom_segment(aes(x = appearanceSecs, xend = sceneEndSecs,
                    y = character, yend = character), linewidth = 3) +
   theme_gdocs() + theme(legend.position = "none")
-#ggsave('~/Desktop/GSERM_ICPSR/personalFiles/somePlot.jpeg')
+#ggsave('~/Desktop/GSERM_2024/personalFiles/somePlot.jpeg')
 
 # Now see just top n characters
 n <- 6
