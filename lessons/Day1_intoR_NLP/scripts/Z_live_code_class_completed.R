@@ -35,7 +35,7 @@ cleanCorpus<-function(corpus, customStopwords){
 customStopwords <- c(stopwords('english'), 'coffee')
 
 # data
-text <- read.csv('https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day1/data/coffeeVector.csv')
+text <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day1_intoR_NLP/data/coffeeVector.csv')
 head(text)
 
 # Find the tweets that mention "mug"

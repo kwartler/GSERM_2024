@@ -13,7 +13,7 @@ library(ggplot2)
 
 
 # Read in data
-txt <- read.csv("https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3/data/new_orleans_airbnb_listings.csv")
+txt <- read.csv("https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3_sentiment/data/new_orleans_airbnb_listings.csv")
 
 # Explore
 head(txt)
