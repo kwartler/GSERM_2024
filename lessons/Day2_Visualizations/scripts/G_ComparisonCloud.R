@@ -5,8 +5,8 @@
 #'
 
 # Data Input, locally you can use list.files()
-chardonnay <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/chardonnay.csv'
-coffee     <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/coffee.csv'
+chardonnay <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/chardonnay.csv'
+coffee     <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/coffee.csv'
 txtFiles <- c(chardonnay, coffee)
 
 # Topic names
@@ -64,7 +64,7 @@ coffee     <- paste(coffee, collapse = ' ')
 chardonnay <- paste(chardonnay, collapse = ' ')
 
 # Combine the subject documents into a corpus of *2* documents
-allDrinks <- c(coffee, chardonnay)
+allDrinks <- c(chardonnay, coffee)
 allDrinks <- VCorpus((VectorSource(allDrinks)))
 
 # Make TDM with a different control parameter
@@ -75,7 +75,7 @@ drinkDTM  <- DocumentTermMatrix(allDrinks, control = ctrl)
 drinkDTMm <- as.matrix(drinkDTM)
 
 # Make sure order is the same as the c(objA, objB) 
-rownames(drinkDTMm) <- c('coffee', 'chardonnay')
+rownames(drinkDTMm) <- c('chardonnay', 'coffee')
 
 # Make comparison cloud; requires TDM!
 comparison.cloud(t(drinkDTMm),

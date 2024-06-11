@@ -5,7 +5,7 @@
 #'
 
 # Declare the data path
-filePath  <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/chardonnay.csv'
+filePath  <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/chardonnay.csv'
 
 # Libs
 library(tm)
@@ -69,7 +69,7 @@ txtFreq <- data.frame(word=names(txtSums),
 txtFreq <- txtFreq[order(txtFreq$frequency, decreasing = T),]
 
 # Regular dynamic WC, click the pop-out in the viewer
-wordcloud2(data = txtFreq[1:50,])
+wordcloud2(data = txtFreq[1:10,])
 ?wordcloud2
 
 # Choose a color & drop light ones

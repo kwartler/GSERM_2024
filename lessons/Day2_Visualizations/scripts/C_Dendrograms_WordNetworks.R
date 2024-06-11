@@ -5,7 +5,7 @@
 #'
 
 # Declare the data path
-filePath  <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/studentLoan_2024.csv'
+filePath  <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/studentLoan_2024.csv'
 
 # Libs
 library(tm)
@@ -41,9 +41,9 @@ cleanCorpus<-function(corpus, customStopwords){
 
 # Sub Function
 complaintSubstitutions <- function(narrativeVector){
-  x <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', 'REDACTED_DATE', narrativeVector, perl = T)
-  x <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', 'REDACTED_DATE', x, perl = T)
-  x <- gsub('X+', 'REDACTED', x)
+  x <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', '', narrativeVector, perl = T)
+  x <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', '', x, perl = T)
+  x <- gsub('X+', '', x)
   return(x)
 }
 

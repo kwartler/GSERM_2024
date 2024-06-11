@@ -5,7 +5,7 @@
 #'
 
 # Declare the data path
-filePath  <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/chardonnay.csv'
+filePath  <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/chardonnay.csv'
 
 # Libs
 library(tm)
@@ -90,7 +90,7 @@ wordcloud(topWordsA$word,
           colors       = pal,
           scale        = c(2,1))
 
-pdf('~/Desktop/ICPSR/personalFiles/exampleWC.pdf')
+pdf('~/Desktop/GSERM_2024/personalFiles/exampleWC.pdf')
 wordcloud(topWordsA$word,
           topWordsA$freq,
           max.words    = 50,
