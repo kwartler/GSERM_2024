@@ -1,6 +1,6 @@
 #' Examine Top Songs by Year
-#' TK
-#' June 8, 2024
+#' THE ASSIGNMENT IS DUE June 30, 2024
+#' EMAIL YOUR SCRIPT & SLIDES TO edwardkwartler@fas.harvard.edu
 #' Instructions:
 #' 1. Complete the script based on the comments
 #' 2. Create THREE slides for your submission in addition to the script
