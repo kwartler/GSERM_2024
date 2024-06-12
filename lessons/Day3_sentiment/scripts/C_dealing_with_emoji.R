@@ -10,7 +10,7 @@ library(emoji) # Get the emoji lexicon or load one manually
 library(emojifont) # another emoji library to explore
 library(textclean) #another one!
 library(mgsub) #used for substitutions
-library(qdap) #emoticons functions
+#library(qdap) #emoticons functions
 
 # Examine built in lexicon
 head(emojis)
