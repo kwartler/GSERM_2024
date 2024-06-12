@@ -19,6 +19,9 @@ library(lubridate)
 filePathA <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3_sentiment/data/goldmanSachs_2023_3k.csv'
 filePathB <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3_sentiment/data/BARCLAYS_BANK_DELAWARE_2023_3k.csv'
 txtFiles  <- c(filePathA, filePathB)
+docNames <- c('GS','Barclays')
+
+
 
 # Custom Functions
 tryTolower <- function(x){
@@ -41,9 +44,9 @@ cleanCorpus<-function(corpus, customStopwords){
 
 # Sub Function
 complaintSubstitutions <- function(narrativeVector){
-  x <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', 'REDACTED_DATE', narrativeVector, perl = T)
-  x <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', 'REDACTED_DATE', x, perl = T)
-  x <- gsub('X+', 'REDACTED', x)
+  x <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', '', narrativeVector, perl = T)
+  x <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', '', x, perl = T)
+  x <- gsub('X+', '', x)
   return(x)
 }
 
@@ -60,8 +63,8 @@ for(i in 1:length(all)){
   x <- cleanCorpus(x, stops) #clean each corpus
   x <- DocumentTermMatrix(x) #make a DTM
   x <- tidy(x) #change orientation
-  x$document <- txtFiles[i]
-  cleanTibbles[[txtFiles[i]]] <- x #put it into the list
+  x$document <- docNames[i]
+  cleanTibbles[[docNames[i]]] <- x #put it into the list
   print(paste('complete with',i))
 }
 
@@ -109,7 +112,7 @@ afinnPosNeg
 # This could be made more concise but we're going to do it within a loop
 cleanMonthlyTibbles <- list()
 for(i in 1:length(all)){
-  print(paste('starting', txtFiles[i]))
+  print(paste('starting', docNames[i]))
   # Separate 
   oneSetComplaints <- all[[i]]
   
@@ -127,7 +130,7 @@ for(i in 1:length(all)){
     x <- DocumentTermMatrix(x) 
     x <- tidy(x) 
     x$month <- unique(oneSetComplaints$month)[j]
-    x$topic <- txtFiles[i]
+    x$topic <- docNames[i]
     monthlyList[[j]] <- x
   }
   
@@ -155,7 +158,8 @@ posNegMonth$month <- factor(posNegMonth$month, levels = month.abb)
 
 ggplot(posNegMonth, aes(x = month, y = count, fill = topic)) +
   geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Count by Month", x = "Month", y = "Count")
+  labs(title = "Count by Month", x = "Month", y = "Count") +
+  facet_wrap(.~sentiment) 
 
 # Finally let's explore as a radar chart using NRC
 nrc <- lexicon_nrc()
