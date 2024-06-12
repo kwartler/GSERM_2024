@@ -160,8 +160,30 @@ ggplot(posNegMonth, aes(x = month, y = count, fill = topic)) +
 # Finally let's explore as a radar chart using NRC
 nrc <- lexicon_nrc()
 
-# 
+# Inner join on the list
 x <- lapply(cleanMonthlyTibbles, inner_join, nrc, by = c('term' = 'word'))
+
+# Let's aggregate
+aggGS  <- aggregate(count~sentiment, x[[1]], sum)
+aggBar <- aggregate(count~sentiment, x[[2]], sum)
+
+# Let's drop pos/neg polarity so it's less "double counted"
+drops <- grep('positive|negative', aggGS$sentiment)
+aggGS <- aggGS[-drops,]
+
+drops <- grep('positive|negative', aggBar$sentiment)
+aggBar <- aggBar[-drops,]
+
+# Make it proportional
+aggGS$count  <- proportions(aggGS$count)
+aggBar$count <- proportions(aggBar$count)
+
+# Join them & add colnames to keep it straight
+plotDF <- full_join(aggGS, aggBar, by = 'sentiment')
+colnames(plotDF) <- c('sentiment','Goldman','Barclays')
+
+chartJSRadar(scores = plotDF, labelSize = 10, showLegend = T)
+
 
 
 # End

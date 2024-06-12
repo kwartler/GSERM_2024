@@ -126,8 +126,6 @@ nrcSentRadar <- prop.table(nrcSentRadar,2)
 nrcSentRadar
 colSums(nrcSentRadar) #quick check to see what prop table did
 
-pivot_longer(as.data.frame.matrix(nrcSentRadar), col = everything())
-
 # Organize
 plotDF <- data.frame(labels = rownames(nrcSentRadar),
                            as.data.frame.matrix(nrcSentRadar),
