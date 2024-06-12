@@ -22,11 +22,11 @@ tryTolower <- function(x){
 
 cleanCorpus<-function(corpus, customStopwords){
   corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
-  corpus <- tm_map(corpus, removePunctuation)
-  corpus <- tm_map(corpus, stripWhitespace)
-  corpus <- tm_map(corpus, removeNumbers)
   corpus <- tm_map(corpus, content_transformer(tryTolower))
   corpus <- tm_map(corpus, removeWords, customStopwords)
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, removeNumbers)
+  corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
 
@@ -63,7 +63,7 @@ barplot(txtKMeans$size, main = 'k-means')
 # silhouette measures a distance from where the observation sits in the cluster to the next nearest cluster 
 dissimilarityMat <- dist(txtMat)
 silPlot          <- silhouette(txtKMeans$cluster, dissimilarityMat)
-head(silPlot, 15) #1=well matched, 0=similar to next cluster, -1=misclassified
+head(silPlot, 50) #1=well matched, 0=similar to next cluster, -1=misclassified
 
 # The sihouette plot needs to have k cluster "shadows" that are tall and distinct.
 plot(silPlot, col=1:max(txtKMeans$cluster), border=NA)
@@ -87,6 +87,6 @@ for (i in 1:max(txtKMeans$cluster)){
 }
 
 # Notification of closest doc to centroid
-cat(paste('cluster',1:max(txtKMeans$cluster),': centroid doc is ', idx,'\n'))
+cat(paste('cluster',1:max(txtKMeans$cluster),': centroid closest doc is ', idx,'\n'))
 
 # End

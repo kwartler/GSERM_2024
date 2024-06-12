@@ -1,7 +1,8 @@
 #' Purpose: Apply NRC to get news source sentiment & cluster to get news topics
 #' Author: Ted Kwartler
 #' email: edwardkwartler@fas.harvard.edu
-#' Date: June 9, 2024
+#' Date: June 12, 2024
+#' HAVE STUDENTS GET LATEST FROM REPO
 
 # no sci notation
 options(scipen = 999)
@@ -20,6 +21,7 @@ library(radarchart)
 library(ggplot2)
 library(ggthemes)
 library(textdata)
+library(tidyr)
 
 # Bring in our supporting functions
 tryTolower <- function(x){
@@ -31,12 +33,12 @@ tryTolower <- function(x){
 }
 
 cleanCorpus<-function(corpus, customStopwords){
-  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url))
-  corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removePunctuation)
-  corpus <- tm_map(corpus, stripWhitespace)
+  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
   corpus <- tm_map(corpus, removeWords, customStopwords)
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, removeNumbers)
+  corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
 
@@ -88,24 +90,25 @@ head(protoTypical)
 comparison.cloud(protoTypical, title.size=1.1, scale=c(1,.5))
 #dev.off()
 
-# Now only grab 1 cluster, and source
+# Append clusters to the raw data
 allInfoRaw$cluster <- txtSKMeans$cluster
+head(allInfoRaw)
 
+# align just source and cluster
 metaInfo <- data.frame(allInfoRaw$source, txtSKMeans$cluster)
-
-
+head(metaInfo)
 
 #### Perform an NRC Sentiment Inner Join
 tidyCorp <- tidy(DocumentTermMatrix(allInfo))
 tidyCorp
 
-# Let's understand the meta data of new source
+# Let's understand the meta data of news source rows 1-100 are Washington Post etc
 sourceID <- unique(meta(allInfo))
 sourceID
 
-# Cut documents into the 5 sources
-seq(0,500,100) 
-tidyCorp <- as.data.frame(tidyCorp)
+# Cut documents into the 5 sources and append to the corresponding document in the tidy corp
+seq(0,500,100) #example
+tidyCorp <- as.data.frame(tidyCorp) # change object class
 tidyCorp$source <- cut(as.numeric(tidyCorp$document), 
                        breaks = seq(0,500,100), 
                        labels = sourceID[,1])
@@ -131,8 +134,9 @@ tidyCorp <- inner_join(tidyCorp, nrc,
 head(tidyCorp)
 
 
-# Subset to one cluster and tally the emotional words
-tidyCorpOne <- subset(tidyCorp, tidyCorp$cluster==2)
+# Subset to one cluster (we have 1 to 4)
+whichCluster <- 4
+tidyCorpOne <- subset(tidyCorp, tidyCorp$cluster==whichCluster)
 
 # Drop positive & negative
 tidyCorpOne <- subset(tidyCorpOne, 
@@ -140,17 +144,24 @@ tidyCorpOne <- subset(tidyCorpOne,
 tidyCorpOne <- subset(tidyCorpOne, 
                       tidyCorpOne$sentiment!='negative')
 
-emos <- as.data.frame.matrix(table(tidyCorpOne$sentiment,
-                                   tidyCorpOne$source))
+emos <- aggregate(count~sentiment+source, tidyCorpOne, sum)
+emos <- emos %>% 
+pivot_wider(names_from = source, values_from = count) %>% as.data.frame()
+
+# Examine
+emos
 
 # Make it proportional example
 # as a proportion of the channel's effort
-propSent <- prop.table(as.matrix(emos), margin = 2)
-propSent <- as.data.frame(propSent)
+propSent <- prop.table(as.matrix(emos[,2:ncol(emos)]), margin = 2)
+propSent <- data.frame(source =emos[,1],
+                       propSent)
 propSent
 # Make a radar chart
-chartJSRadar(scores = as.data.frame(propSent), 
-             labs = rownames(emos),
-             labelSize = 10, showLegend = F)
+chartTitle <- paste(names(which.max(protoTypical[,whichCluster])), 'cluster')
+chartJSRadar(scores = propSent[,2:ncol(propSent)], 
+             labs = propSent$source,
+             labelSize = 10, showLegend = F,
+             main = chartTitle)
 
 # End

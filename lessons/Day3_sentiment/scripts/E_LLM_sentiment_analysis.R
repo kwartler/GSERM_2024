@@ -67,7 +67,7 @@ for(i in 1:5){
   # Extract the response
   llmResponse <- httr::content(res)$choices[[1]]$message$content
   if(validate(llmResponse)==F){
-    llmResponse <- '{\n  \"sentiment\": \"MISSING\"\n}' # in reality I would write a WHILE loop
+    llmResponse <- '{\n  \"sentiment\": \"not in JSON\"\n}' # in reality I would write a WHILE loop
   } else {
     llmResponse <- llmResponse
   }

@@ -6,7 +6,7 @@
 # *large-ish* data: "winemag-data-130k-v2.csv"
 
 # Data Path
-wine <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/winemag-data-130k-v2.csv'
+wine <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/winemag-data-130k-v2.csv'
 
 # Libs
 library(wordcloud)
@@ -25,14 +25,15 @@ tryTolower <- function(x){
 
 # Corpus processing
 cleanCorpus<-function(corpus, customStopwords){
-  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url))
+  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
+  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, removePunctuation)
   corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
+
 
 # Let's use bigrams
 bigramTokens <-function(x){

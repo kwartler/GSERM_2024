@@ -31,6 +31,7 @@ cleanCorpus<-function(corpus, customStopwords){
   return(corpus)
 }
 
+
 # Create custom stop words
 customStopwords <- c(stopwords('english'), 'coffee')
 

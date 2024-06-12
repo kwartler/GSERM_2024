@@ -26,9 +26,9 @@ tryTolower <- function(x){
 cleanCorpus<-function(corpus, customStopwords){
   corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
+  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, removePunctuation)
   corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
@@ -84,7 +84,7 @@ afinn
 
 # Word Sequence
 allText$idx       <- as.numeric(ave(allText$document, 
-                                     allText$document, FUN=seq_along))
+                                    allText$document, FUN=seq_along))
 # Perform Inner Join
 afinnSent <- inner_join(allText,
                         afinn, 
@@ -114,22 +114,28 @@ nrcSent
 # Drop pos/neg leaving only emotion
 nrcSent <- nrcSent[-grep('positive|negative',nrcSent$sentiment),]
 
-# Quick chk
-table(nrcSent$sentiment,nrcSent$document)
+# Unique polarized term tally
+table(nrcSent$sentiment,nrcSent$document) #unique polarized words 
 
-# Manipulate for radarchart
-nrcSentRadar <- as.matrix(table(nrcSent$sentiment, nrcSent$document))
+# Sum of the polarized words
+aggregate(count~document + sentiment, nrcSent, sum) %>%
+  pivot_wider(names_from = document, values_from = count)
+
+# Now lets use this for a radar chart
+nrcSentRadar <- aggregate(count~document + sentiment, nrcSent, sum) %>%
+  pivot_wider(names_from = document, values_from = count) %>% as.data.frame()
 nrcSentRadar
 
 # Normalize for length; prop.table by column is "2"
-nrcSentRadar <- prop.table(nrcSentRadar,2)
-nrcSentRadar
-colSums(nrcSentRadar) #quick check to see what prop table did
+tmp <- as.matrix(nrcSentRadar[,2:ncol(nrcSentRadar)])
+tmp <- prop.table(tmp,2)
+tmp
+colSums(tmp) #quick check to see what prop table did
 
 # Organize
-plotDF <- data.frame(labels = rownames(nrcSentRadar),
-                           as.data.frame.matrix(nrcSentRadar),
-                           row.names = NULL)
+plotDF <- data.frame(labels = nrcSentRadar[,1],
+                     tmp,
+                     row.names = NULL)
 plotDF
 
 # Chart

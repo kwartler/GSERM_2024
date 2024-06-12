@@ -35,9 +35,9 @@ tryTolower <- function(x){
 cleanCorpus<-function(corpus, customStopwords){
   corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
+  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, removePunctuation)
   corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
@@ -51,7 +51,7 @@ complaintSubstitutions <- function(narrativeVector){
 }
 
 # Create custom stop words
-stops <- c(stopwords('english'), 'redacteddate', 'redacted')
+stops <- c(stopwords('english'), 'account', 'bank')
 
 # Read in as a list
 all <- lapply(txtFiles,read.csv)
@@ -179,14 +179,16 @@ drops <- grep('positive|negative', aggBar$sentiment)
 aggBar <- aggBar[-drops,]
 
 # Make it proportional
-aggGS$count  <- proportions(aggGS$count)
-aggBar$count <- proportions(aggBar$count)
+aggGS$prop  <- base::proportions(aggGS$count)
+aggBar$prop <- base::proportions(aggBar$count)
 
 # Join them & add colnames to keep it straight
 plotDF <- full_join(aggGS, aggBar, by = 'sentiment')
-colnames(plotDF) <- c('sentiment','Goldman','Barclays')
+colnames(plotDF) <- c('sentiment','GoldmanCount','GoldmanProportion',
+                      'BarclaysCount','BarclaysProportion')
 
-chartJSRadar(scores = plotDF, labelSize = 10, showLegend = T)
+chartJSRadar(scores = plotDF[c(1,2,4)], labelSize = 10, showLegend = T)
+chartJSRadar(scores = plotDF[c(1,3,5)], labelSize = 10, showLegend = T) #as a proportion antcipation is different, so it does make a difference to account for the proportion of the polarized words within a corpus.
 
 
 

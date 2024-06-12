@@ -5,8 +5,8 @@
 #'
 
 # Data Input, locally you can use list.files()
-mortgageLoans  <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/mortgageLoan_2024.csv'
-studentLoans   <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/studentLoan_2024.csv'
+mortgageLoans  <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/mortgageLoan_2024.csv'
+studentLoans   <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/studentLoan_2024.csv'
 txtFiles <- c(mortgageLoans, studentLoans)
 
 # Libs
@@ -30,14 +30,15 @@ tryTolower <- function(x){
 
 # Cleaning
 cleanCorpus<-function(corpus, customStopwords){
-  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url))
+  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
+  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, removePunctuation)
   corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
+
 
 # Sub Function
 complaintSubstitutions <- function(narrativeVector){
@@ -47,7 +48,7 @@ complaintSubstitutions <- function(narrativeVector){
   return(x)
 }
 # Create custom stop words
-stops <- c(stopwords('english'), 'redacteddate', 'redacted', 'mortgage', 'student','loans', 'loan')
+stops <- c(stopwords('english'), 'mortgage', 'student','loans', 'loan')
 
 
 # Read in Data, collapse, clean & organize.  For advanced programming students, this could be done with a custom function

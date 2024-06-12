@@ -28,11 +28,11 @@ tryTolower <- function(x){
 }
 
 cleanCorpus<-function(corpus, customStopwords){
-  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url))
-  corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
   corpus <- tm_map(corpus, removeWords, customStopwords)
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, removeNumbers)
   corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
@@ -75,6 +75,7 @@ txtCorpPCA <- prcomp_irlba(as.matrix(txtCorpDTM),
 plotDF         <- as.data.frame(txtCorpPCA$x)
 names(plotDF)  <- c("PC1", "PC2")
 plotDF$cluster <- txtSKMeans$cluster #cluster assignment for each doc
+head(plotDF)
 
 # Visualize the separation
 fviz_cluster(list(data = plotDF, cluster = plotDF$cluster),

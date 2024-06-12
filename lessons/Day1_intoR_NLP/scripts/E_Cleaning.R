@@ -43,11 +43,11 @@ text$Consumer.complaint.narrative[1]
 # (X{2}\\/X{2}\\/X{4}) 2x's/2x's/4x's
 # (X{2}\\/X{2}\\/[0-9]{2,4}) 2x's/2x's/2-4 length digits; this will also cover XX/XX/XX since first section looks for 2x's/2x's anyway
 # ([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4}) 2 digits/2digits/2-4 length digits
-text$Consumer.complaint.narrative <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', 'REDACTED_DATE', text$Consumer.complaint.narrative, perl = T)
+text$Consumer.complaint.narrative <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', '', text$Consumer.complaint.narrative, perl = T)
 
 # Global substitutions for words of any length capital X
 text$Consumer.complaint.narrative <- gsub('X+', 
-                                          'REDACTED', 
+                                          '', 
                                           text$Consumer.complaint.narrative)
 
 # Let's review our substitutions:

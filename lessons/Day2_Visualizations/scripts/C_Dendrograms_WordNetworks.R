@@ -30,14 +30,15 @@ tryTolower <- function(x){
 
 # Cleaning
 cleanCorpus<-function(corpus, customStopwords){
-  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url))
+  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
+  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, removePunctuation)
   corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
+
 
 # Sub Function
 complaintSubstitutions <- function(narrativeVector){
@@ -48,7 +49,7 @@ complaintSubstitutions <- function(narrativeVector){
 }
 
 # Create custom stop words
-stops <- c(stopwords('english'), 'redacteddate', 'redacted')
+stops <- c(stopwords('english'), 'student', 'loan')
 
 # Read in Data, clean & organize into a TDM!!
 text      <- read.csv(filePath)

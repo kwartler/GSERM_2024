@@ -25,23 +25,24 @@ tryTolower <- function(x){
 cleanCorpus<-function(corpus, customStopwords){
   corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
+  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, removePunctuation)
   corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
 
+
 # Create custom stop words
-stops <- c(stopwords('english'), 'redacteddate', 'redacted')
+stops <- c(stopwords('english'), 'loan', 'student')
 
 # Data
 text <- read.csv(filePath)
 
 # Substitutions
-text$Consumer.complaint.narrative <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', 'REDACTED_DATE', text$Consumer.complaint.narrative, perl = T)
+text$Consumer.complaint.narrative <- gsub('(X{2}\\/X{2}\\/X{4})|(X{2}\\/X{2}\\/[0-9]{2,4})|([0-9]{2}\\/[0-9]{2}\\/[0-9]{2,4})', '', text$Consumer.complaint.narrative, perl = T)
 text$Consumer.complaint.narrative <- gsub('X+', 
-                                          'REDACTED', 
+                                          '', 
                                           text$Consumer.complaint.narrative)
 
 # Make a volatile corpus

@@ -7,8 +7,8 @@
 #'
 
 # Data Input, locally you can use list.files()
-chardonnay <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/chardonnay.csv'
-coffee     <- '~/Desktop/GSERM_2024/lessons/Day2_Visualizations/data/coffee.csv'
+chardonnay <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/chardonnay.csv'
+coffee     <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day2_Visualizations/data/coffee.csv'
 txtFiles <- c(chardonnay, coffee)
 
 # Topic names
@@ -31,14 +31,15 @@ tryTolower <- function(x){
 
 # Cleaning
 cleanCorpus<-function(corpus, customStopwords){
-  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url))
+  corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url)) 
   corpus <- tm_map(corpus, content_transformer(tryTolower))
+  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, removePunctuation)
   corpus <- tm_map(corpus, removeNumbers)
-  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, stripWhitespace)
   return(corpus)
 }
+
 
 
 # Create custom stop words
