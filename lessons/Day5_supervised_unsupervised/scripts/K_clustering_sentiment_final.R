@@ -44,6 +44,9 @@ cleanCorpus<-function(corpus, customStopwords){
 
 # Examine Raw Text
 rawTxt <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_ICPSR/main/lessons/C_Sentiment_Unsupervised/data/exampleNews.csv')
+rawTxt$description <- stringi::stri_encode(rawTxt$description, "", "UTF-8")
+rawTxt$content <- stringi::stri_encode(rawTxt$content, "", "UTF-8")
+rawTxt$title <- stringi::stri_encode(rawTxt$title, "", "UTF-8")
 
 # Examine the meta
 t(rawTxt[1,])
@@ -135,7 +138,7 @@ head(tidyCorp)
 
 
 # Subset to one cluster (we have 1 to 4)
-whichCluster <- 4
+whichCluster <- 2
 tidyCorpOne <- subset(tidyCorp, tidyCorp$cluster==whichCluster)
 
 # Drop positive & negative
