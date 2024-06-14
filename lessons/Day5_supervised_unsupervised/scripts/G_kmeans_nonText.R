@@ -1,5 +1,5 @@
 #' Author: Ted Kwartler
-#' Date: Dec 3-2023
+#' Date: June 14, 2024
 #' Purpose: K Means Clustering for customer segmentation
 #' 
 

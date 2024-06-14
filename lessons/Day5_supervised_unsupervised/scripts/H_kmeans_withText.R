@@ -35,6 +35,7 @@ stops  <- c(stopwords('SMART'), 'work')
 
 # Read
 txt <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_ICPSR/main/lessons/C_Sentiment_Unsupervised/data/basicResumes.csv')
+txt$text <- stringi::stri_encode(txt$text, "", "UTF-8")
 
 # Make a volatile corpus
 txtCorpus <- VCorpus(VectorSource(txt$text))

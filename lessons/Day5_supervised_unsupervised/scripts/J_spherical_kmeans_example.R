@@ -39,6 +39,8 @@ cleanCorpus<-function(corpus, customStopwords){
 
 # Data
 txt <- read.csv('https://raw.githubusercontent.com/kwartler/ICPSR/main/ICPSR_Day3/data/3k_exampleTweets.csv')
+txt$x <- stringi::stri_encode(txt$x, "", "UTF-8")
+
 #txt <- read.csv('https://raw.githubusercontent.com/kwartler/GSERM_ICPSR/main/lessons/C_Sentiment_Unsupervised/data/basicResumes.csv')
 
 # Apply tm functions
