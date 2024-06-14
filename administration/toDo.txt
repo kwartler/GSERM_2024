@@ -2,3 +2,4 @@
 2. Fix day 2 powerpoint to create visuals in the same order as the scripts.
 3. Check commonality cloud and comparison cloud ensuring cleanCorpus has removeWords before removePunctuation
 4. Day 3 live code has comparison cloud.  Maybe add a follow up version so that the polarized words are removed and the comparison cloud is remade.
+5. Add a non lm studio version with openAI where students can add their key for scripts in a folder not covered.  They can pay attention and then on their own if they want to spend money they can do it themselves.

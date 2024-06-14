@@ -25,11 +25,11 @@ tryTolower <- function(x){
 
 cleanCorpus<-function(corpus, customStopwords){
   corpus <- tm_map(corpus, content_transformer(qdapRegex::rm_url))
+  corpus <- tm_map(corpus, content_transformer(tryTolower))
+  corpus <- tm_map(corpus, removeWords, customStopwords)
   corpus <- tm_map(corpus, removeNumbers)
   corpus <- tm_map(corpus, removePunctuation)
   corpus <- tm_map(corpus, stripWhitespace)
-  corpus <- tm_map(corpus, content_transformer(tryTolower))
-  corpus <- tm_map(corpus, removeWords, customStopwords)
   return(corpus)
 }
 

@@ -41,6 +41,9 @@ table(trainDiabetesTxt$readmitted)
 
 ### MODIFY
 # 
+trainDiabetesTxt$diagnosisText <- stringi::stri_encode(trainDiabetesTxt$diagnosisText,
+                                                       "", "UTF-8")
+
 trainDiabetesTxt$diagnosisText <- diagnosisClean(trainDiabetesTxt$diagnosisText)
 
 # Initial iterator to make vocabulary

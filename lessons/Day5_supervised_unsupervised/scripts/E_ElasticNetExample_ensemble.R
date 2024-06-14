@@ -42,13 +42,16 @@ head(trainDiabetesTxt$diagnosisText,2)
 table(trainDiabetesTxt$readmitted)
 
 ### MODIFY
+trainDiabetesTxt$diagnosisText <- stringi::stri_encode(trainDiabetesTxt$diagnosisText,"", "UTF-8")
 trainDiabetesTxt$diagnosisText <- diagnosisClean(trainDiabetesTxt$diagnosisText)
 
 # Initial iterator to make vocabulary
 iterMaker <- itoken(trainDiabetesTxt$diagnosisText, 
                     preprocess_function = list(tolower), 
                     progressbar         = T)
-textVocab <- create_vocabulary(iterMaker, stopwords=stopwords('SMART'))
+textVocab <- create_vocabulary(iterMaker,  
+                               ngram = c(ngram_min = 1L, ngram_max = 3L),
+                               stopwords=stopwords('SMART'))
 head(textVocab)
 tail(textVocab)
 nrow(textVocab)

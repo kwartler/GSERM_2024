@@ -19,6 +19,9 @@ pg %>% html_nodes("a") %>% html_attr("href") %>% unique()#all unique Links
 firstSection <- pg %>% html_nodes(xpath = '//*[@id="main"]/section[1]') %>% html_text()
 cat(firstSection)
 
+# Let's just get the crawl
+pg %>% html_nodes('.crawl') %>% html_text()
+
 # If the CSS (cascading style sheet) uses named entities you can get them by name
 allSections <- pg %>% html_nodes('section')
 allSections #notice the h2 header, lets get those!

@@ -9,7 +9,7 @@ library(httr)
 library(jsonlite)
 
 # Inputs
-tmp <- list.files(path = '~/Desktop/GSERM_2024/lessons/Day5_LLMs_explained/data/clinton', full.names = T)
+tmp <- list.files(path = '~/Desktop/GSERM_2024/lessons/Day4_LLMs_explained/data/clinton', full.names = T)
 
 # Get 1 example
 oneDoc <- lapply(tmp[sample(1:length(tmp), 1)], readLines)

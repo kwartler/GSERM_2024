@@ -60,7 +60,7 @@ res <- httr::POST(url = "http://localhost:1234/v1/chat/completions",
 llmResponseB <- httr::content(res)$choices[[1]]$message$content
 cat(llmResponseB)
 
-# Organize Request D
+# Organize Request C
 dataLLM <- list(model = llmModel,
                 messages = list(
                   list(role = "system", content = "You are a helpful, smart, kind, and efficient AI assistant. You always fulfill the user's requests to the best of your ability."),
