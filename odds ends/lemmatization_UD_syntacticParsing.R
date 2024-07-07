@@ -45,6 +45,8 @@ udModel <- udpipe_load_model(udModel$file_model)
 
 # Bring in data & organize
 textData <- read.csv(datPth)
+textData$text <- stringi::stri_encode(textData$text, "", "UTF-8")
+
 
 # Convert so my computer can handle non English characters
 #Encoding(textData$text)

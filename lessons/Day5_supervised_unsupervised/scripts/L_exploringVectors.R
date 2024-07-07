@@ -32,7 +32,6 @@ reviewClean<-function(xVec, stops = stopwords('english')){
 
 # Clean
 reviews <- reviewClean(reviews$comments)
-reviews <- complaintSubstitutions(reviews)
 
 # Define how do we iterate through the text?
 tokenIteration <- itoken(reviews) 

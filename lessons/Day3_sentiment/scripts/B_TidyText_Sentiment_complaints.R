@@ -14,6 +14,7 @@ library(textdata)
 library(ggplot2)
 library(tidyr)
 library(lubridate)
+library(syuzhet)
 
 # Data list.files()
 filePathA <- 'https://raw.githubusercontent.com/kwartler/GSERM_2024/main/lessons/Day3_sentiment/data/goldmanSachs_2023_3k.csv'
@@ -163,6 +164,7 @@ ggplot(posNegMonth, aes(x = month, y = count, fill = topic)) +
 
 # Finally let's explore as a radar chart using NRC
 nrc <- lexicon_nrc()
+# not the tidy workflow; get_nrc_sentiment()
 
 # Inner join on the list
 x <- lapply(cleanMonthlyTibbles, inner_join, nrc, by = c('term' = 'word'))
