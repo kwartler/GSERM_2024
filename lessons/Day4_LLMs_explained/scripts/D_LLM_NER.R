@@ -14,7 +14,7 @@ llmModel <- 'lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF'
 headers <- c(`Content-Type` = "application/json")
 
 # Read the doc
-oneDoc <- readLines('~/Desktop/GSERM_2024/lessons/Day5_LLMs_explained/data/ZAF_1985_State_Department.txt')
+oneDoc <- readLines('https://raw.githubusercontent.com/kwartler/teaching-datasets/main/ZAF_1985_State_Department.txt')
 
 # Let's find relevant section to focus the LLM; section headers
 st <- grep('c. Torture and Cruel', oneDoc)
